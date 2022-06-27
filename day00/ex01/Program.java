@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Program {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		long number = scanner.nextInt();
-		long check = 2;
+		int number = scanner.nextInt();
+		int check = 2;
 		boolean isPrime;
 
 		if (number < 2) {
