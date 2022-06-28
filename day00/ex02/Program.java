@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Program {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		final int stop = 42;
+		final int STOP = 42;
 		int coffeeCount = 0;
 		int input = scanner.nextInt();
 
-		while (input != stop) {
+		while (input != STOP) {
 			if (isPrimeNumber(sumOfDigits(input))) {
 				coffeeCount++;
 			}

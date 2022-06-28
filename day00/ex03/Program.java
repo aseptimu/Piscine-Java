@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        final int maxNumberOfWeeks = 19;
-        final String dataLimit = "42";
+        final int MAX_NUMBER_OF_WEEKS = 19;
+        final String DATA_LIMIT = "42";
         long storage = 0;
         int currentWeek = 1;
         String input = scanner.nextLine();
 
-        while (currentWeek != maxNumberOfWeeks && !input.equals(dataLimit)) {
+        while (currentWeek != MAX_NUMBER_OF_WEEKS && !input.equals(DATA_LIMIT)) {
             checkString(input, currentWeek);
             storage = saveGrade(storage, scanner);
             input = scanner.nextLine();
@@ -22,20 +22,20 @@ public class Program {
     }
 
     private static void checkString(String check, int weekNumber) {
-        final String weekCheck = "Week ";
+        final String WEEK_CHECK = "Week ";
 
-        if (!check.equals(weekCheck + weekNumber)) {
+        if (!check.equals(WEEK_CHECK + weekNumber)) {
             System.err.println("Illegal Argument");
             System.exit(-1);
         }
     }
 
     private static long saveGrade(long storage, Scanner scanner) {
-        final int numberOfTests = 5;
+        final int NUMBER_OF_TESTS = 5;
         int minGrade = 10;
         int grade;
 
-        for (int i = 0; i < numberOfTests; i++) {
+        for (int i = 0; i < NUMBER_OF_TESTS; i++) {
             grade = scanner.nextInt();
             if (grade < 1 || grade > 9) {
                 System.err.println("Illegal Argument");
