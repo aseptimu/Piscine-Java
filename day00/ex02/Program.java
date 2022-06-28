@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Program {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		final long stop = 42;
+		final int stop = 42;
 		int coffeeCount = 0;
 		int input = scanner.nextInt();
 
@@ -33,8 +33,7 @@ public class Program {
 		int check = 2;
 
 		if (number < 2) {
-			System.err.println("Illegal Argument");
-			System.exit(-1);
+			return false;
 		}
 		while (check * check <= number && number % check != 0) {
 			check++;
