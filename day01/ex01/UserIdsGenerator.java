@@ -7,7 +7,7 @@ public class UserIdsGenerator {
 
     private UserIdsGenerator() { }
 
-    public static UserIdsGenerator getIdgen() {
+    public static UserIdsGenerator getInstance() {
         return IDGEN;
     }
 

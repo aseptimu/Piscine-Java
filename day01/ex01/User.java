@@ -7,7 +7,7 @@ public class User {
     Integer balance;
 
     public User(String name, Integer balance) {
-        this.identifier = UserIdsGenerator.getIdgen().generateId();
+        this.identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
         setBalance(balance);
     }
