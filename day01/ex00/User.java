@@ -1,9 +1,9 @@
 package ex00;
 
 public class User {
-    Integer identifier;
-    String name;
-    Integer balance = 0;
+    private Integer identifier;
+    private String name;
+    private Integer balance = 0;
 
     public Integer getBalance() {
         return balance;
@@ -22,7 +22,11 @@ public class User {
     }
 
     public void setBalance(Integer balance) {
-        this.balance = balance;
+        if (balance < 0) {
+            this.balance = 0;
+        } else {
+            this.balance = balance;
+        }
     }
 
     public void setIdentifier(Integer identifier) {

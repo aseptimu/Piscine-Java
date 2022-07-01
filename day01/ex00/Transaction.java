@@ -13,12 +13,12 @@ public class Transaction {
         SUCCESS
     }
 
-    private UUID identifier;
-    private User recipient;
-    private User sender;
-    private TransferCategory category;
-    private Status status;
-    private Integer transferAmount;
+    private final UUID identifier;
+    private final User recipient;
+    private final User sender;
+    private final TransferCategory category;
+    private final Status status;
+    private final Integer transferAmount;
 
     Transaction(User recipient, User sender, Integer transferAmount) {
         this.recipient = recipient;
@@ -35,8 +35,8 @@ public class Transaction {
             recipient.getBalance() < -transferAmount && category == TransferCategory.CREDIT) {
             status = Status.FAIL;
         } else {
-            sender.balance = sender.balance - transferAmount;
-            recipient.balance = recipient.balance + transferAmount;
+            sender.setBalance(sender.getBalance() - transferAmount);
+            recipient.setBalance(recipient.getBalance() + transferAmount);
             status = Status.SUCCESS;
         }
     }
