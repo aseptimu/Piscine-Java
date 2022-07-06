@@ -20,7 +20,21 @@ public class Transaction {
     private final Status status;
     private final Integer transferAmount;
 
-    Transaction(User recipient, User sender, Integer transferAmount) {
+    private Transaction(User recipient, User sender, Integer transferAmount, UUID identifier) {
+        this.recipient = recipient;
+        this.sender = sender;
+        this.identifier = identifier;
+
+        if (transferAmount < 0) {
+            category = TransferCategory.CREDIT;
+        } else {
+            category = TransferCategory.DEBIT;
+        }
+        this.transferAmount = transferAmount;
+        this.status = Status.SUCCESS;
+    }
+
+    public Transaction(User recipient, User sender, Integer transferAmount) {
         this.recipient = recipient;
         this.sender = sender;
         this.identifier = UUID.randomUUID();
@@ -38,7 +52,8 @@ public class Transaction {
             sender.setBalance(sender.getBalance() - transferAmount);
             recipient.setBalance(recipient.getBalance() + transferAmount);
             sender.setTransaction(this);
-            recipient.setTransaction(this);
+            Transaction tr = new Transaction(sender, recipient, -transferAmount, identifier);
+            recipient.setTransaction(tr);
             status = Status.SUCCESS;
         }
     }

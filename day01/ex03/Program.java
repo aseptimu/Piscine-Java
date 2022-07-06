@@ -10,6 +10,15 @@ public class Program {
         Transaction transaction3 = new Transaction(user2, user1, 100);
         Transaction transaction4 = new Transaction(user2, user1, -50);
         System.out.println("Vasya balance: " + user1.getBalance() + "\nPetya balance: " + user2.getBalance());
+        Transaction[] transactions1 = user1.getTransactions().toArray();
+        Transaction[] transactions2 = user2.getTransactions().toArray();
+
+        System.out.println("Transaction info: " + transactions1[0].getRecipient().getName() + " to " +
+                    transactions1[0].getSender().getName() + ". Amount: " + transactions1[0].getTransferAmount() +
+                    " " + transactions1[0].getCategory());
+        System.out.println("Transaction info: " + transactions2[0].getRecipient().getName() + " to " +
+                transactions2[0].getSender().getName() + ". Amount: " + transactions2[0].getTransferAmount() +
+                " " + transactions2[0].getCategory());
 
         Transaction[] transactions = user1.getTransactions().toArray();
         for (Integer i = 0; i < transactions.length; i++) {
