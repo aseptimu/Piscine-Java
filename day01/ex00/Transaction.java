@@ -20,7 +20,7 @@ public class Transaction {
     private final Status status;
     private final Integer transferAmount;
 
-    Transaction(User recipient, User sender, Integer transferAmount) {
+    public Transaction(User recipient, User sender, Integer transferAmount) {
         this.recipient = recipient;
         this.sender = sender;
         this.identifier = UUID.randomUUID();
