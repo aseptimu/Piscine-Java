@@ -29,11 +29,18 @@ public class Program {
 					" " + vanyaTrans[i].getCategory());
 		}
 		service.removeUserTransaction(user1.getIdentifier(), vanyaTrans[0].getIdentifier());
+		vanyaTrans = service.retrieveUserTransfers(user1);
 		System.out.println();
-		for (Integer i = 0; i < olyaTrans.length; i++) {
+		for (Integer i = 0; i < vanyaTrans.length; i++) {
 			System.out.println("Transaction info: " + vanyaTrans[i].getRecipient().getName() + " to " +
 					vanyaTrans[i].getSender().getName() + ". Amount: " + vanyaTrans[i].getTransferAmount() +
 					" " + vanyaTrans[i].getCategory());
+		}
+
+		try {
+			service.performTransfer(user1.getIdentifier(), user2.getIdentifier(), 100000);
+		} catch (RuntimeException e) {
+			System.out.println(e);
 		}
 	}
 }

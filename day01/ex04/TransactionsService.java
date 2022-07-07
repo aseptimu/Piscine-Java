@@ -20,7 +20,6 @@ public class TransactionsService {
 				usersList.retrieveUserById(senderId), amount, identifier);
 		Transaction senderTransaction = new Transaction(usersList.retrieveUserById(senderId),
 				usersList.retrieveUserById(recipientId), -amount, identifier);
-
 		usersList.retrieveUserById(recipientId).getTransactions().addTransaction(recipientTransaction);
 		usersList.retrieveUserById(senderId).getTransactions().addTransaction(senderTransaction);
 	}
@@ -31,7 +30,6 @@ public class TransactionsService {
 
 	public void removeUserTransaction(Integer userId, UUID transferId) {
 		usersList.retrieveUserById(userId).getTransactions().removeTransactionById(transferId);
-
 	}
 
 	public Transaction [] retrieveUnpairedTransactions() {
