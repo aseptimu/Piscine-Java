@@ -50,6 +50,26 @@ public class TransactionsLinkedList implements TransactionsList {
         return numberOfTransactions;
     }
 
+    public boolean isInTransactionList(UUID identifier) {
+        TransactionNode tmp = begin.next;
+        while (tmp != end) {
+            if (tmp.data.getIdentifier().equals(identifier))
+                return true;
+            tmp = tmp.next;
+        }
+        return false;
+    }
+
+    public Transaction getTransactionById(UUID identifier) throws TransactionNotFoundException {
+        TransactionNode tmp = begin.next;
+        while (tmp != end) {
+            if (tmp.data.getIdentifier().equals(identifier)) {
+                return tmp.data;
+            }
+        }
+        throw new TransactionNotFoundException("No transaction");
+    }
+
     class TransactionNode {
         private Transaction data;
         private TransactionNode next;

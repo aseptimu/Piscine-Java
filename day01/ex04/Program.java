@@ -37,6 +37,14 @@ public class Program {
 					" " + vanyaTrans[i].getCategory());
 		}
 
+		System.out.println("\nUNPAIRED TRANSACTION");
+		Transaction[] bad = service.unpairedTransactions.toArray();
+		for (Integer i = 0; i < bad.length; i++) {
+			System.out.println("Transaction info: " + bad[i].getRecipient().getName() + " to " +
+					bad[i].getSender().getName() + ". Amount: " + bad[i].getTransferAmount() +
+					" " + bad[i].getCategory());
+		}
+
 		try {
 			service.performTransfer(user1.getIdentifier(), user2.getIdentifier(), 100000);
 		} catch (RuntimeException e) {

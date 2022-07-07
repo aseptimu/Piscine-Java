@@ -6,7 +6,7 @@ public class User {
     private String name;
     private Integer balance;
 
-    private TransactionsList transactions = new TransactionsLinkedList();
+    private TransactionsLinkedList transactions = new TransactionsLinkedList();
 
     public User(String name, Integer balance) {
         this.identifier = UserIdsGenerator.getInstance().generateId();
@@ -17,7 +17,7 @@ public class User {
         this.transactions.addTransaction(transaction);
     }
 
-    public TransactionsList getTransactions() {
+    public TransactionsLinkedList getTransactions() {
         return transactions;
     }
     public Integer getBalance() {

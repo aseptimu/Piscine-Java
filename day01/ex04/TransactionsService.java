@@ -29,6 +29,21 @@ public class TransactionsService {
 	}
 
 	public void removeUserTransaction(Integer userId, UUID transferId) {
+		Transaction delete = usersList.retrieveUserById(userId).getTransactions().getTransactionById(transferId);
+
+		if (unpairedTransactions.isInTransactionList(transferId)) {
+			unpairedTransactions.removeTransactionById(transferId);
+		} else {
+			Transaction unpaired;
+
+			if (delete.getSender().equals(userId)) {
+				unpaired = delete.getRecipient().getTransactions().getTransactionById(transferId);
+			} else {
+				unpaired = delete.getSender().getTransactions().getTransactionById(transferId);
+			}
+			unpairedTransactions.addTransaction(unpaired);
+		}
+
 		usersList.retrieveUserById(userId).getTransactions().removeTransactionById(transferId);
 	}
 
