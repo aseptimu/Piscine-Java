@@ -43,8 +43,12 @@ public class Words {
 
 	private static Set<String> retrieveDictionaryFromLists(List<String> wordsList1, List<String> wordsList2) {
 		TreeSet<String> dictionary= new TreeSet<>();
-		dictionary.addAll(wordsList1);
-		dictionary.addAll(wordsList2);
+		if (wordsList1 != null) {
+			dictionary.addAll(wordsList1);
+		}
+		if (wordsList2 != null) {
+			dictionary.addAll(wordsList2);
+		}
 
 		return dictionary;
 	}
@@ -59,15 +63,18 @@ public class Words {
 	}
 
 	private static double calculateSimilarity(List<String> words1, List<String> words2, Set<String> dictionary) {
-		int[] entryWords1 = retrieveWordsEntry(dictionary, words1);
-		int[] entryWords2 = retrieveWordsEntry(dictionary, words2);
-		double numerator = calculateNumerator(entryWords1, entryWords2, dictionary.size());
-		double denominator = calculateDenominator(entryWords1, entryWords2, dictionary.size());
-
-		return numerator / denominator;
+		try {
+			int[] entryWords1 = retrieveWordsEntry(dictionary, words1);
+			int[] entryWords2 = retrieveWordsEntry(dictionary, words2);
+			double numerator = calculateNumerator(entryWords1, entryWords2, dictionary.size());
+			double denominator = calculateDenominator(entryWords1, entryWords2, dictionary.size());
+			return numerator / denominator;
+		} catch (NullPointerException e) {
+			return 0;
+		}
 	}
 
-	private static int[] retrieveWordsEntry(Set<String> dictionary, List<String> words) {
+	private static int[] retrieveWordsEntry(Set<String> dictionary, List<String> words) throws NullPointerException {
 		int count;
 		int i = 0;
 		int[] entryWords = new int[dictionary.size()];
