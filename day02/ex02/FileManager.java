@@ -29,9 +29,10 @@ public class FileManager {
 						commands.mv(Paths.get(cmd[1]), Paths.get(cmd[2]));
 						break;
 					case "ls":
-						System.out.println("ls"); //TODO: delete
+						commands.ls();
 						break;
 					case "cd":
+						commands.cd(Paths.get(cmd[1]));
 						break;
 					default:
 						System.out.println("Wrong cmd");
