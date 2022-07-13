@@ -4,6 +4,7 @@ public class Printer implements Runnable {
 
 	private final String message;
 	private final int count;
+	private static Printer print = null;
 
 	public Printer(String message, int count) {
 		this.message = message;
@@ -12,6 +13,14 @@ public class Printer implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println(message);
+		for (int i = 0; i < count;) {
+			synchronized (Printer.class) {
+				if (print != this) {
+					print = this;
+					System.out.println(message);
+					i++;
+				}
+			}
+		}
 	}
 }
