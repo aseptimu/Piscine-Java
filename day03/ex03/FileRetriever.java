@@ -28,10 +28,10 @@ public class FileRetriever {
 
             System.out.println(Thread.currentThread().getName() + " start download file number " + threadId);
             InputStream in = file.openStream();
-            Files.copy(in, Paths.get(url), StandardCopyOption.REPLACE_EXISTING); // TODO: не работает
+            Files.copy(in, Paths.get(url.substring(url.lastIndexOf('/') + 1)), StandardCopyOption.REPLACE_EXISTING);
             System.out.println(Thread.currentThread().getName() + " finish download file number " + threadId);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

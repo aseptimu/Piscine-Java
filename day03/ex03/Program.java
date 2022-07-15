@@ -32,6 +32,5 @@ public class Program {
 		for (int i = 0; i < threadsNumber; i++) {
 			new Thread(new Threader(i + 1), "Thread-" + (i + 1)).start();
 		}
-
 	}
 }
