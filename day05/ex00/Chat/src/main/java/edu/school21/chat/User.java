@@ -9,7 +9,7 @@ public class User {
 	private ArrayList<Chatroom> roomsList;
 	private ArrayList<Chatroom> insideRooms;
 
-	@Override //TODO: check all overrides
+	@Override
 	public int hashCode() {
 		int result = userId;
 		result = 31 * result + userId.hashCode();
