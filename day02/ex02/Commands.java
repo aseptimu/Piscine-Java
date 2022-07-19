@@ -55,7 +55,12 @@ public class Commands {
 	}
 
 	public void cd(Path to) {
-		Path fullPath = Paths.get(currentPath.toString() + "/" + to.toString());
+		Path fullPath;
+		if (to.startsWith("/")) {
+			fullPath = Paths.get(to + "/");
+		} else {
+			fullPath = Paths.get(currentPath + "/" + to);
+		}
 		if (Files.exists(fullPath) && Files.isDirectory(fullPath)) {
 			currentPath = fullPath.normalize();
 			System.out.println(currentPath);
