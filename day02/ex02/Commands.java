@@ -21,9 +21,19 @@ public class Commands {
 
 	public void mv(Path from, Path to) {
 		try {
-			Path fromAbsolute = Paths.get(this.currentPath + "/" + from);
-			Path toAbsolute = Paths.get(this.currentPath + "/" + to);
+			Path fromAbsolute;
+			Path toAbsolute;
 
+			if (from.startsWith("/")) {
+				fromAbsolute = Paths.get(from.toString());
+			} else {
+				fromAbsolute = Paths.get(this.currentPath + "/" + from);
+			}
+			if (to.startsWith("/")) {
+				toAbsolute = Paths.get(to.toString());
+			} else {
+				toAbsolute = Paths.get(this.currentPath + "/" + to);
+			}
 			if (Files.isRegularFile(fromAbsolute)) {
 				if (Files.isDirectory(toAbsolute)) {
 					toAbsolute = Paths.get(toAbsolute + "/" + fromAbsolute.getFileName());
