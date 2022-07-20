@@ -8,10 +8,14 @@ public class FileSignature {
 
 	private static final String SIGNATURES = "/Users/aseptimu/IdeaProjects/Piscine/Piscine-Java/day02/ex00/signatures.txt";
 
-	public static void main(String[] args) throws IOException {
-		SignatureParser signatureParser = new SignatureParser();
-		Map<String, String> signatures = signatureParser.retrieveSignatures(new File(SIGNATURES));
-		System.out.println(signatures.keySet());
-		signatureParser.retrieveFiles(signatures);
+	public static void main(String[] args){
+		try {
+			SignatureParser signatureParser = new SignatureParser();
+			Map<String, String> signatures = signatureParser.retrieveSignatures(new File(SIGNATURES));
+			System.out.println(signatures.keySet());
+			signatureParser.retrieveFiles(signatures);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

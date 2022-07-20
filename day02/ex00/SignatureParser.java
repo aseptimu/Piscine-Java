@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SignatureParser {
 	private static final String END = "42";
-	private static final String RESULT = "result.txt";
+	private static final String RESULT = "/Users/aseptimu/IdeaProjects/Piscine/Piscine-Java/day02/ex00/result.txt";
 
 	public Map<String, String> retrieveSignatures(File signature) throws FileNotFoundException {
 		Map<String, String> signatures = new HashMap<>();
