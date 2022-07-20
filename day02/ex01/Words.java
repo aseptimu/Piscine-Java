@@ -29,13 +29,18 @@ public class Words {
 
 	private static List<String> retrieveWordsFromFile(String fileName) throws IOException {
 		BufferedReader file = new BufferedReader(new FileReader(fileName));
-		List<String> wordsList = null;
+		List<String> wordsList = new ArrayList<>();
 		String line;
 		String[] words;
+		int j;
 
 		while ((line = file.readLine()) != null) {
-			words = line.split(" ");
-			wordsList = Arrays.asList(words);
+			words = line.split("\\s");
+			j = 0;
+			while (j < words.length) {
+				wordsList.add(words[j]);
+				j++;
+			}
 		}
 		file.close();
 		return wordsList;
@@ -112,7 +117,11 @@ public class Words {
 		return Math.sqrt(sqrt1) * Math.sqrt(sqrt2);
 	}
 
-	private static void printSimilarity (double similarity) {
-		System.out.printf("Similarity = %.2f", similarity);
+	private static void printSimilarity (Double similarity) {
+		if (similarity.isNaN()) {
+			System.out.printf("Similarity = %.2f", 0f);
+		} else {
+			System.out.printf("Similarity = %.2f", similarity);
+		}
 	}
 }
