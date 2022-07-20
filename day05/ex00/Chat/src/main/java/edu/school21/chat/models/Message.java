@@ -1,4 +1,4 @@
-package Chat.src.main.java.edu.school21.chat.models;
+package edu.school21.chat.models;
 
 import java.time.LocalDateTime;
 
