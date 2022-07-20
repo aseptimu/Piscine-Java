@@ -49,6 +49,7 @@ public class SignatureParser {
 						if (key.startsWith(builder.toString())) {
 							fileOutputStream.write(signatures.get(key).getBytes());
 							fileOutputStream.write('\n');
+							System.out.println("PROCESSED");
 							break;
 						}
 					}
