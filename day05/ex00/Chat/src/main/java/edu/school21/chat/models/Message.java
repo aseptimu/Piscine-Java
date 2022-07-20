@@ -1,7 +1,6 @@
-package Chat.src.main.java.edu.school21.chat;
+package Chat.src.main.java.edu.school21.chat.models;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Message {
 	private Integer id;
@@ -34,9 +33,10 @@ public class Message {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Message msg)) {
+		if (!(obj instanceof Message)) {
 			return false;
 		}
+		Message msg = (Message)obj;
 		return id.equals(msg.id);
 	}
 

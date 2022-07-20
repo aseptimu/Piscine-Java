@@ -1,4 +1,4 @@
-package Chat.src.main.java.edu.school21.chat;
+package Chat.src.main.java.edu.school21.chat.models;
 
 import java.util.ArrayList;
 
@@ -25,9 +25,10 @@ public class User {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof User user)) {
+		if (!(obj instanceof User)) {
 			return false;
 		}
+		User user = (User)obj;
 		return userId.equals(user.getUserId());
 	}
 

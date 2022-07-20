@@ -1,4 +1,4 @@
-package Chat.src.main.java.edu.school21.chat;
+package Chat.src.main.java.edu.school21.chat.models;
 
 import java.util.ArrayList;
 
@@ -43,9 +43,10 @@ public class Chatroom {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Chatroom chat)) {
+		if (!(obj instanceof Chatroom)) {
 			return false;
 		}
+		Chatroom chat = (Chatroom)obj;
 		return id.equals(chat.id);
 	}
 
