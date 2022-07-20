@@ -1,8 +1,8 @@
-INSERT INTO "user" (login, password) VALUES ('aseptimu', '123');
-INSERT INTO "user" (login, password) VALUES ('srobt', 'PUSSYKILLER');
-INSERT INTO "user" (login, password) VALUES ('zelbocal', 'Boris');
-INSERT INTO "user" (login, password) VALUES ('mamka228', 'qwerty');
-INSERT INTO "user" (login, password) VALUES ('MrHunter', '*******');
+INSERT INTO "user" (login, password, rooms_id, chatrooms_id) VALUES ('aseptimu', '123', '{1, 2}', '{1, 3}');
+INSERT INTO "user" (login, password, rooms_id, chatrooms_id) VALUES ('srobt', 'PUSSYKILLER', '{3}', '{1, 2, 3, 4, 5}');
+INSERT INTO "user" (login, password, rooms_id, chatrooms_id) VALUES ('zelbocal', 'Boris', '{}', '{1, 2, 3, 4, 5}');
+INSERT INTO "user" (login, password, rooms_id, chatrooms_id) VALUES ('mamka228', 'qwerty', '{}', '{1, 2, 3, 4, 5}');
+INSERT INTO "user" (login, password, rooms_id, chatrooms_id) VALUES ('MrHunter', '*******', '{}', '{1, 2, 3, 4, 5}');
 
 INSERT INTO chatroom (name, owner) VALUES ('general', 3);
 INSERT INTO chatroom (name, owner) VALUES ('котики', 2);
