@@ -1,5 +1,6 @@
 package ex02;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,7 +15,7 @@ public class Commands {
 	public Commands(Path currentPath) throws IOException {
 		System.out.println(currentPath);
 		if (!Files.exists(currentPath)) {
-			throw new IOException("File not found"); // TODO: check
+			throw new IOException("File not found");
 		}
 		this.currentPath = currentPath;
 	}
@@ -54,7 +55,8 @@ public class Commands {
 					.forEach(path -> {
 						try {
 							System.out.println(path.getFileName() + " " +
-									(long)Math.ceil((double)Files.size(path) / 1024) + " KB");
+									(long)Math.ceil((double)(Files.isDirectory(path) ?
+											getFolderSize(path.toFile()) : Files.size(path)) / 1024) + " KB");
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -62,6 +64,25 @@ public class Commands {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
+	}
+
+	private long getFolderSize(File folder) {
+		long length = 0;
+		File[] files = folder.listFiles();
+		if (files == null) {
+			return 0;
+		}
+
+		int count = files.length;
+
+		for (File file : files) {
+			if (file.isFile()) {
+				length += file.length();
+			} else {
+				length += getFolderSize(file);
+			}
+		}
+		return length;
 	}
 
 	public void cd(Path to) {
