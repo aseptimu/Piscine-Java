@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 public class MessagesRepositoryJdbcImpl implements MessageRepository {
@@ -23,22 +21,26 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 	@Override
 	public Optional<Message> findById(Long id) throws SQLException {
 		Connection connection = ds.getConnection();
-		Statement statement = connection.createStatement();
+		Statement statement1 = connection.createStatement();
+		Statement statement2 = connection.createStatement();
+		Statement statement3 = connection.createStatement();
 		String query = "SELECT * FROM message WHERE id = " + id;
-		ResultSet resultMessage = statement.executeQuery(query);
+		ResultSet resultMessage = statement1.executeQuery(query);
 		resultMessage.next();
-		ResultSet resultUser = statement.executeQuery("SELECT * FROM \"user\" WHERE id = " +
+		ResultSet resultUser = statement2.executeQuery("SELECT * FROM \"user\" WHERE id = " +
 				resultMessage.getInt("author"));
-		ResultSet resultRoom = statement.executeQuery("SELECT * FROM message WHERE id = " +
+		resultUser.next();
+		ResultSet resultRoom = statement3.executeQuery("SELECT * FROM message WHERE id = " +
 				resultMessage.getInt("room"));
+		resultRoom.next();
 
 		User user = new User(resultUser.getLong("id"), resultUser.getString("login"),
 				resultUser.getString("password"),
 				null, null);
-		Chatroom chatroom = new Chatroom(resultRoom.getLong("id"), resultRoom.getString("name"),
+		Chatroom chatroom = new Chatroom(resultRoom.getLong("id"), resultRoom.getString(2),
 				null, null);
 		Message message = new Message(resultMessage.getLong("id"), user,
-				null, resultMessage.getString("text"),
+				chatroom, resultMessage.getString("text"),
 				resultMessage.getTimestamp("time").toLocalDateTime());
 		return (Optional.of(message));
 	}
