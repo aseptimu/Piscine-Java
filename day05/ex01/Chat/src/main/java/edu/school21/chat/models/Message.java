@@ -3,13 +3,13 @@ package edu.school21.chat.models;
 import java.time.LocalDateTime;
 
 public class Message {
-	private Integer id;
-	private String author;
+	private Long id;
+	private User author;
 	private Chatroom room;
 	private String text;
 	private LocalDateTime messageDateTime;
 
-	public Message(Integer id, String author, Chatroom room, String text, LocalDateTime messageDateTime) {
+	public Message(Long id, User author, Chatroom room, String text, LocalDateTime messageDateTime) {
 		this.id = id;
 		this.author = author;
 		this.room = room;
@@ -19,7 +19,7 @@ public class Message {
 
 	@Override
 	public int hashCode() {
-		int result = id;
+		int result = 0;
 		result = 31 * result + id.hashCode();
 		result = 31 * result + author.hashCode();
 		result = 31 * result + room.hashCode();
@@ -42,18 +42,18 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return ("Message id: " + id +
-				" author: " + author +
-				" room: " + room +
-				" content: " + text +
-				" date: " + messageDateTime);
+		return ("Message : {\nid=" + id +
+				",\nauthor=" + author +
+				",\nroom=" + room +
+				",\ntext=" + text +
+				",\ndate=" + messageDateTime);
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public String getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
@@ -69,11 +69,11 @@ public class Message {
 		return messageDateTime;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 

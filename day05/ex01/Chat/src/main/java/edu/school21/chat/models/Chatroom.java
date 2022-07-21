@@ -3,12 +3,12 @@ package edu.school21.chat.models;
 import java.util.ArrayList;
 
 public class Chatroom {
-	private Integer id;
+	private Long id;
 	private String name;
-	private String owner;
+	private User owner;
 	private ArrayList<Message> messagesList;
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -16,7 +16,7 @@ public class Chatroom {
 		this.name = name;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner(User owner) {
 		this.owner = owner;
 	}
 
@@ -24,13 +24,13 @@ public class Chatroom {
 		this.messagesList = messagesList;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = id;
+		int result = 0;
 		result = 31 * result + id.hashCode();
 		result = 31 * result + name.hashCode();
 		result = 31 * result + owner.hashCode();
@@ -52,13 +52,13 @@ public class Chatroom {
 
 	@Override
 	public String toString() {
-		return "Chatroom id: " + id +
-				" chatroom name: " + name +
-				" chatroom owner: " + owner +
-				" messages: " + messagesList;
+		return "{id=" + id +
+				",name=\"" + name +
+				"\",creator=" + owner +
+				",messages=" + messagesList + "}";
 	}
 
-	public Chatroom(Integer id, String name, String owner, ArrayList<Message> messagesList) {
+	public Chatroom(Long id, String name, User owner, ArrayList<Message> messagesList) {
 		this.id = id;
 		this.name = name;
 		this.owner = owner;
@@ -69,7 +69,7 @@ public class Chatroom {
 		return name;
 	}
 
-	public String getOwner() {
+	public User getOwner() {
 		return owner;
 	}
 

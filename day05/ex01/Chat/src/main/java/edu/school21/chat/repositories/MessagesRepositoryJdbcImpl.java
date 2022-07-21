@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 public class MessagesRepositoryJdbcImpl implements MessageRepository {
@@ -23,10 +25,21 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 		Connection connection = ds.getConnection();
 		Statement statement = connection.createStatement();
 		String query = "SELECT * FROM message WHERE id = " + id;
-		ResultSet result = statement.executeQuery(query);
-		result.next();
-		User user = new User(1, "aseptimu", "qwert", null, null);
-		Chatroom chatroom =
-		return ();
+		ResultSet resultMessage = statement.executeQuery(query);
+		resultMessage.next();
+		ResultSet resultUser = statement.executeQuery("SELECT * FROM \"user\" WHERE id = " +
+				resultMessage.getInt("author"));
+		ResultSet resultRoom = statement.executeQuery("SELECT * FROM message WHERE id = " +
+				resultMessage.getInt("room"));
+
+		User user = new User(resultUser.getLong("id"), resultUser.getString("login"),
+				resultUser.getString("password"),
+				null, null);
+		Chatroom chatroom = new Chatroom(resultRoom.getLong("id"), resultRoom.getString("name"),
+				null, null);
+		Message message = new Message(resultMessage.getLong("id"), user,
+				null, resultMessage.getString("text"),
+				resultMessage.getTimestamp("time").toLocalDateTime());
+		return (Optional.of(message));
 	}
 }

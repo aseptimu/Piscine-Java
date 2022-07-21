@@ -3,7 +3,7 @@ package edu.school21.chat.models;
 import java.util.ArrayList;
 
 public class User {
-	private Integer userId;
+	private Long userId;
 	private String login;
 	private String password;
 	private ArrayList<Chatroom> roomsList;
@@ -11,7 +11,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		int result = userId;
+		int result = 0;
 		result = 31 * result + userId.hashCode();
 		result = 31 * result + login.hashCode();
 		result = 31 * result + password.hashCode();
@@ -34,14 +34,14 @@ public class User {
 
 	@Override
 	public String toString() {
-		return ("User: id = " + userId +
-				" login: " + login +
-				" password: " + password +
-				" List of created rooms: " + roomsList +
-				" User invited to rooms: " + insideRooms);
+		return ("{id=" + userId +
+				",login=\"" + login +
+				"\",password=\"" + password +
+				"\",createdRooms=" + roomsList +
+				",rooms=" + insideRooms + "}");
 	}
 
-	public User(Integer userId, String login, String password, ArrayList<Chatroom> roomsList, ArrayList<Chatroom> insideRooms) {
+	public User(Long userId, String login, String password, ArrayList<Chatroom> roomsList, ArrayList<Chatroom> insideRooms) {
 		this.userId = userId;
 		this.login = login;
 		this.password = password;
@@ -49,7 +49,7 @@ public class User {
 		this.insideRooms = insideRooms;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -69,7 +69,7 @@ public class User {
 		this.insideRooms = insideRooms;
 	}
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
