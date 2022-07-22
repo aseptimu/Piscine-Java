@@ -42,6 +42,7 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 		Message message = new Message(resultMessage.getLong("id"), user,
 				chatroom, resultMessage.getString("text"),
 				resultMessage.getTimestamp("time").toLocalDateTime());
+		connection.close();
 		return (Optional.of(message));
 	}
 }

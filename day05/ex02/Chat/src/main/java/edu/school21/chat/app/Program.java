@@ -25,6 +25,6 @@ public class Program {
 		Message message = new Message(null, author, room, "Hello!", LocalDateTime.now());
 		MessageRepository messagesRepository = new MessagesRepositoryJdbcImpl(dataSource);
 		messagesRepository.save(message);
-		System.out.println(message.getId()); // ex. id == 11
+		System.out.println(message.getId());
 	}
 }

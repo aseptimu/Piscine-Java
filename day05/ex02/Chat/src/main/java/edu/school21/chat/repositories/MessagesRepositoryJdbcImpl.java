@@ -43,6 +43,7 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 		Message message = new Message(resultMessage.getLong("id"), user,
 				chatroom, resultMessage.getString("text"),
 				resultMessage.getTimestamp("time").toLocalDateTime());
+		connection.close();
 		return (Optional.of(message));
 	}
 
@@ -60,6 +61,7 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 			ResultSet result = stmt.getGeneratedKeys();
 			result.next();
 			message.setId((long)result.getInt(1));
+			conn.close();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new NotSavedSubEntityException("Database exception");
