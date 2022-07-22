@@ -18,11 +18,18 @@ public class Program {
 		HikariDataSource dataSource = new HikariDataSource();
 		dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
 
-		User creator = new User(7L, "user", "user", new ArrayList(), new ArrayList()); User author = creator;
-		Chatroom room = new Chatroom(8L, "room", creator, new ArrayList());
-		Message message = new Message(null, author, room, "Hello!", LocalDateTime.now());
 		MessageRepository messagesRepository = new MessagesRepositoryJdbcImpl(dataSource);
-		messagesRepository.save(message);
-		System.out.println(message.getId());
+		Optional<Message> messageOptional = null;
+		try {
+			messageOptional = messagesRepository.findById(11L);
+			if (messageOptional.isPresent()) {
+				Message message = messageOptional.get();
+				message.setText("Bye");
+				message.setMessageDateTime(null);
+				messagesRepository.update(message);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
