@@ -45,8 +45,8 @@ public class Message {
 		return ("Message : {\nid=" + id +
 				",\nauthor=" + author +
 				",\nroom=" + room +
-				",\ntext=" + text +
-				",\ndate=" + messageDateTime);
+				",\ntext=\"" + text + "\"" +
+				",\ndate=" + messageDateTime + "\n}");
 	}
 
 	public Long getId() {

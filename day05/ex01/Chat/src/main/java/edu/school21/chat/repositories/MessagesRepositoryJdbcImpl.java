@@ -30,14 +30,14 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 		ResultSet resultUser = statement2.executeQuery("SELECT * FROM \"user\" WHERE id = " +
 				resultMessage.getInt("author"));
 		resultUser.next();
-		ResultSet resultRoom = statement3.executeQuery("SELECT * FROM message WHERE id = " +
+		ResultSet resultRoom = statement3.executeQuery("SELECT * FROM chatroom WHERE id = " +
 				resultMessage.getInt("room"));
 		resultRoom.next();
 
 		User user = new User(resultUser.getLong("id"), resultUser.getString("login"),
 				resultUser.getString("password"),
 				null, null);
-		Chatroom chatroom = new Chatroom(resultRoom.getLong("id"), resultRoom.getString(2),
+		Chatroom chatroom = new Chatroom(resultRoom.getLong("id"), resultRoom.getString("name"),
 				null, null);
 		Message message = new Message(resultMessage.getLong("id"), user,
 				chatroom, resultMessage.getString("text"),
