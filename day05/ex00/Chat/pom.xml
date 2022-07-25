@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>day05.ex00</groupId>
-    <artifactId>Chat</artifactId>
+    <artifactId>ChatD05E00</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <build>
@@ -21,6 +21,10 @@
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
 <!--         https://mvnrepository.com/artifact/org.postgresql/postgresql -->
