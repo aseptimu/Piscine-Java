@@ -18,7 +18,8 @@ public class Program {
 		HikariDataSource dataSource = new HikariDataSource();
 		dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
 
-		User creator = new User(7L, "user", "user", new ArrayList(), new ArrayList()); User author = creator;
+		User creator = new User(7L, "user", "user", new ArrayList(), new ArrayList());
+		User author = creator;
 		Chatroom room = new Chatroom(8L, "room", creator, new ArrayList());
 		Message message = new Message(null, author, room, "Hello!", LocalDateTime.now());
 		MessageRepository messagesRepository = new MessagesRepositoryJdbcImpl(dataSource);
