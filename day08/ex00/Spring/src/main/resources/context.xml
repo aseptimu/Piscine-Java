@@ -9,7 +9,8 @@
         <constructor-arg name="preProcessor" ref="processor"/>
     </bean>
 
-    <bean id="printer" class="printer.PrinterWithPrefixImpl" >
+    <bean id="printerWithPrefix" class="printer.PrinterWithPrefixImpl" >
+        <property name="prefix" value="prefix"/>
         <constructor-arg name="renderer" ref="render"/>
     </bean>
 

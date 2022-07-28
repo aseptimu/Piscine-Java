@@ -2,8 +2,6 @@ package printer;
 
 import render.Renderer;
 
-import java.time.LocalDateTime;
-
 public class PrinterWithDateTimeImpl implements Printer {
 
     Renderer renderer;
@@ -12,7 +10,7 @@ public class PrinterWithDateTimeImpl implements Printer {
         this.renderer = renderer;
     }
 
-    public void print(LocalDateTime time) {
-        renderer.out(time.toString());
+    public void print(String time) {
+        renderer.out(time);
     }
 }
