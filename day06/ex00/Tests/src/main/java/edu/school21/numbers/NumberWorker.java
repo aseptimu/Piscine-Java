@@ -25,7 +25,7 @@ public class NumberWorker {
 		return (sum);
 	}
 
-	 class IllegalNumberException extends RuntimeException {
+	 static class IllegalNumberException extends RuntimeException {
 		public IllegalNumberException(String message) {
 			super (message);
 		}

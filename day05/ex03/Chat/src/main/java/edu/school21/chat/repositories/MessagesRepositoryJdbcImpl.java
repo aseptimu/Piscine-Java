@@ -73,7 +73,6 @@ public class MessagesRepositoryJdbcImpl implements MessageRepository {
 				"', text='" + message.getText() +
 				"', time=" + message.getMessageDateTime() +
 				" WHERE id = " + message.getId() + ";";
-		System.out.println(sqlQuery);
 		try {
 			Connection conn = ds.getConnection();
 			Statement stmt = conn.createStatement();
