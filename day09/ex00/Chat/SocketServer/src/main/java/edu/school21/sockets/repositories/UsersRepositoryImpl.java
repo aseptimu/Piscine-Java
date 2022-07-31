@@ -1,17 +1,22 @@
 package edu.school21.sockets.repositories;
 
+import com.zaxxer.hikari.HikariDataSource;
 import edu.school21.sockets.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component("jdbcTemplate")
 public class UsersRepositoryImpl implements UsersRepository {
     private JdbcTemplate jdbcTemplate;
 
-    public UsersRepositoryImpl(DriverManagerDataSource ds) {
+    @Autowired
+    public UsersRepositoryImpl(HikariDataSource ds) {
         jdbcTemplate = new JdbcTemplate(ds);
     }
 
@@ -28,7 +33,7 @@ public class UsersRepositoryImpl implements UsersRepository {
 
     @Override
     public void save(User entity) {
-        jdbcTemplate.update("INSERT INTO users VALUES(?, ?)", entity.getName(),
+        jdbcTemplate.update("INSERT INTO users (name, password) VALUES(?, ?)", entity.getName(),
                 entity.getPassword());
     }
 
@@ -47,5 +52,11 @@ public class UsersRepositoryImpl implements UsersRepository {
     public Optional<User> findByName(String name) {
         return jdbcTemplate.query("SELECT * FROM users WHERE name = ?", new Object[]{name},
                 new BeanPropertyRowMapper<>(User.class)).stream().findAny();
+    }
+
+    @Override
+    public void initRepo() {
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS users (identifier serial primary key," + "name text not null," +
+                "password varchar(100) not null);");
     }
 }
